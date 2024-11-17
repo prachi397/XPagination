@@ -1,0 +1,16 @@
+.emp-table{
+    width: 100%;
+    text-align: left;
+    border-spacing: 0 5px; 
+}
+.emp-table thead{
+    background: #00856b;
+    color: white;
+}
+.emp-table th{
+    padding: 8px;
+}
+.emp-table td{
+    border-bottom: 1px solid gray;
+    padding: 8px;
+}
