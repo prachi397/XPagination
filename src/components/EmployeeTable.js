@@ -36,7 +36,7 @@ const EmployeeTable = () => {
       let result = await resp.json();
       setEmployeeData(result);
     } catch (err) {
-      console.log("Error in fetching employee data.");
+      alert('failed to fetch data');
     }
   }
 
@@ -65,17 +65,17 @@ const EmployeeTable = () => {
       </table>
       <div className="pagination">
         <button
-          className={currentPage === 1 ? "disable-btn" : ""}
+        //   className={currentPage === 1 ? "disable-btn" : ""}
           onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+        //   disabled={currentPage === 1}
         >
           Previous
         </button>
         <span>{currentPage}</span>
         <button
-          className={currentPage === totalPages ? "disable-btn" : ""}
+        //   className={currentPage === totalPages ? "disable-btn" : ""}
           onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+        //   disabled={currentPage === totalPages}
         >
           Next
         </button>
