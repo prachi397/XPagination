@@ -14,3 +14,26 @@
     border-bottom: 1px solid gray;
     padding: 8px;
 }
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+.pagination button{
+    background: #00856b;
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+}
+.pagination span{
+    background: #00856b;
+    color: white;
+    padding: 2px 6px 2px 6px;
+}
+.pagination .disable-btn{
+    opacity: 0.5;
+    cursor: not-allowed;
+}

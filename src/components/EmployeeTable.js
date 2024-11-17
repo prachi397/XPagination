@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './employeTable.css';
+import "./employeTable.css";
 
 const EmployeeTable = () => {
   const [employeeData, setEmployeeData] = useState([]);
@@ -8,18 +8,20 @@ const EmployeeTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   //calculate total pages
-  const totalPages = Math.ceil(employeeData.length/itemsPerPage);
+  const totalPages = Math.ceil(employeeData.length / itemsPerPage);
 
   //get items for the pages
-  const currentItems = employeeData.slice((currentPage-1)*itemsPerPage,currentPage*itemsPerPage);
+  const currentItems = employeeData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   //function to change page when user clicks on prev.next button
-  const handlePageChange = (newPage) =>{
-    if(newPage>0 && newPage<=totalPages){
-        setCurrentPage(newPage);
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
     }
-  }
-
+  };
 
   useEffect(() => {
     fetchEmployeeData();
@@ -44,26 +46,39 @@ const EmployeeTable = () => {
       <table className="emp-table">
         <thead>
           <tr>
-            {employeeData.length > 0 && Object.keys(employeeData[0]).map((ele) => (
-              <th key={ele}>{ele.charAt(0).toUpperCase() + ele.slice(1)}</th>
-            ))}
+            {employeeData.length > 0 &&
+              Object.keys(employeeData[0]).map((ele) => (
+                <th key={ele}>{ele.charAt(0).toUpperCase() + ele.slice(1)}</th>
+              ))}
           </tr>
         </thead>
         <tbody>
-        {currentItems &&
-          currentItems.map((employee) => (
-                <tr key={employee.id}>
-                    {Object.keys(employee).map((key)=>(
-                        <td key={key}>{employee[key]}</td>
-                    ))}
-                </tr>
-          ))}
+          {currentItems &&
+            currentItems.map((employee) => (
+              <tr key={employee.id}>
+                {Object.keys(employee).map((key) => (
+                  <td key={key}>{employee[key]}</td>
+                ))}
+              </tr>
+            ))}
         </tbody>
       </table>
       <div className="pagination">
-        <button onClick={()=>handlePageChange(currentPage-1)}>Previous</button>
+        <button
+          className={currentPage === 1 ? "disable-btn" : ""}
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
         <span>{currentPage}</span>
-        <button onClick={()=>handlePageChange(currentPage+1)}>Next</button>
+        <button
+          className={currentPage === totalPages ? "disable-btn" : ""}
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
