@@ -4,6 +4,9 @@ import './employeTable.css';
 const EmployeeTable = () => {
   const [employeeData, setEmployeeData] = useState([]);
 
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   useEffect(() => {
     fetchEmployeeData();
@@ -46,6 +49,7 @@ const EmployeeTable = () => {
       </table>
       <div className="pagination">
         <button>Previous</button>
+        <span>{currentPage}</span>
         <button>Next</button>
       </div>
     </div>
