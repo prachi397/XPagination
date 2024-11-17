@@ -7,6 +7,19 @@ const EmployeeTable = () => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
+  //calculate total pages
+  const totalPages = Math.ceil(employeeData.length/itemsPerPage);
+
+  //get items for the pages
+  const currentItems = employeeData.slice((currentPage-1)*itemsPerPage,currentPage*itemsPerPage);
+
+  //function to change page when user clicks on prev.next button
+  const handlePageChange = (newPage) =>{
+    if(newPage>0 && newPage<=totalPages){
+        setCurrentPage(newPage);
+    }
+  }
+
 
   useEffect(() => {
     fetchEmployeeData();
@@ -37,8 +50,8 @@ const EmployeeTable = () => {
           </tr>
         </thead>
         <tbody>
-        {employeeData &&
-          employeeData.map((employee) => (
+        {currentItems &&
+          currentItems.map((employee) => (
                 <tr key={employee.id}>
                     {Object.keys(employee).map((key)=>(
                         <td key={key}>{employee[key]}</td>
@@ -48,9 +61,9 @@ const EmployeeTable = () => {
         </tbody>
       </table>
       <div className="pagination">
-        <button>Previous</button>
+        <button onClick={()=>handlePageChange(currentPage-1)}>Previous</button>
         <span>{currentPage}</span>
-        <button>Next</button>
+        <button onClick={()=>handlePageChange(currentPage+1)}>Next</button>
       </div>
     </div>
   );
